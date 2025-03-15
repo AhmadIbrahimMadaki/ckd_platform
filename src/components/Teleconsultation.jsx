@@ -12,8 +12,9 @@ export default function Teleconsultation() {
 
   // Function to send an email with the meeting link
   const sendEmailToDoctor = async (meetLink) => {
+    const API_BASE_URL = process.env.REACT_APP_API_URL;  
     try {
-      const response = await fetch("http://127.0.0.1:5000/send-email", {
+      const response = await fetch(`${API_BASE_URL}send-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -11,6 +11,7 @@ const Assessments = () => {
     responses: {},
     is_draft: true,
   });
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchPatientData = async () => {
@@ -27,11 +28,11 @@ const Assessments = () => {
         return;
       }
       try {
-        const response = await fetch(`http://127.0.0.1:5000/api/patient/${user.id}`);
+        const response = await fetch(`${API_BASE_URL}patient/${user.id}`);
         const data = await response.json();
         if (response.ok && data.patient_id) {
           setFormData((prev) => ({ ...prev, patient_id: data.patient_id }));
-          const draftResponse = await fetch(`http://127.0.0.1:5000/api/assessments/draft/${data.patient_id}`);
+          const draftResponse = await fetch(`${API_BASE_URL}assessments/draft/${data.patient_id}`);
           const draftData = await draftResponse.json();
           if (draftResponse.ok && draftData.responses) {
             toast.info("Resuming your saved draft...");
@@ -54,7 +55,7 @@ const Assessments = () => {
       }
     };
     fetchPatientData();
-  }, [navigate]);
+  }, [API_BASE_URL, navigate]);
 
   const steps = [
     { id: 1, question: "Do you experience swelling in your feet, ankles, or hands that does not go away easily?", field: "swelling", options: ["A) No swelling ", "B) Mild, occasional swelling  ", "C) Frequent swelling, but manageable", "D) Severe swelling that affects daily activities"] },
@@ -83,7 +84,7 @@ const Assessments = () => {
 
   const handleSubmit = async (isDraft) => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/assessments", {
+      const response = await fetch(`${API_BASE_URL}assessments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -104,13 +105,13 @@ const Assessments = () => {
         // Fetch patient ID for results page
         const storedUser = localStorage.getItem("user");
         const user = JSON.parse(storedUser);
-        const patientResponse = await fetch(`http://127.0.0.1:5000/api/patient/${user.id}`);
+        const patientResponse = await fetch(`${API_BASE_URL}patient/${user.id}`);
         const patientData = await patientResponse.json();
   
         navigate(`/patientresults/${patientData.patient_id}`);
       }
     } catch (error) {
-      toast.error("Unable to connect to the server.");
+      toast.error("You must take the assessment/Unable to connect to the server.");
     }
   };
   

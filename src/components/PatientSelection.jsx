@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const PatientSelection = () => {
   const navigate = useNavigate();
@@ -7,13 +8,13 @@ const PatientSelection = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
     
 
     if (user && user.id) {
       // console.log("Fetching patient data for user ID:", user.id);
 
-      fetch(`http://127.0.0.1:5000/api/patient/${user.id}`)
+      fetch(`${API_BASE_URL}patient/${user.id}`)
         .then((res) => res.json())
         .then((patientData) => {
           // console.log("Fetched patient data:", patientData);
@@ -24,16 +25,37 @@ const PatientSelection = () => {
     }
   }); // Run only once when component mounts
 
-  const handleExistingPatientClick = () => {
+  const handleExistingPatientClick = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user.id) {
-      // console.log("Navigating to patient results with ID:", user.id);
-      navigate(`/patientresults/${user.id}`);
-    } else {
-      alert("Patient ID not found. Please log in again.");
+    if (!user || !user.id) {
+      toast.error("Patient ID not found. Please log in again.");
+      // alert("Patient ID not found. Please log in again.");
       navigate("/login");
+      return;
+    }
+  
+    try {
+      const API_BASE_URL = process.env.REACT_APP_API_URL;
+      const response = await fetch(`${API_BASE_URL}patient/${user.id}`);
+      const patientData = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(patientData.message || "Error fetching patient data.");
+      }
+  
+      // Check if assessment exists and is submitted
+      if (patientData.assessment && patientData.assessment.status === "submitted") {
+        navigate(`/patientresults/${user.id}`);
+      } else {
+        toast.error("Your assessment is saved as a draft. Please complete and submit it before proceeding.");
+        navigate(`/assessment/`); // Redirect to complete assessment
+      }
+    } catch (error) {
+      // console.error("Error fetching patient data:", error);
+      toast.error("An error occurred while retrieving your data. Please try again.");
     }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

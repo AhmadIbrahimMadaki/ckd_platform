@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom"; // You can use React Router for navigation
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const { t } = useTranslation();
@@ -9,7 +10,7 @@ const LoginPage = () => {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  const [successMessage, setSuccessMessage] = useState("");
+  const [successMessage] = useState("");
   const navigate = useNavigate(); // Initialize React Router's navigate
 
   const validate = () => {
@@ -30,17 +31,19 @@ const LoginPage = () => {
     if (!validate()) return;
   
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/login", {
+      const API_BASE_URL = process.env.REACT_APP_API_URL;
+      // console.log("API_BASE_URL:", API_BASE_URL);
+      const response = await fetch(`${API_BASE_URL}login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       const data = await response.json();
   
-      console.log("Backend response:", data); // Debug response
+      // console.log("Backend response:", data); // Debug response
   
       if (response.ok) {
-        setSuccessMessage(t("Login successful!"));
+        toast.success(t("Login successful!"));
   
         // Store user data in localStorage
         if (data.user) {
@@ -51,14 +54,17 @@ const LoginPage = () => {
         if (data.redirect) {
           navigate(data.redirect);
         } else {
-          setErrors({ server: t("No redirect URL provided by the server.") });
+          toast.success(t("No redirect URL provided by the server."));
+          // setErrors({ server: t("No redirect URL provided by the server.") });
         }
       } else {
-        setErrors({ server: data.message || t("Something went wrong!") });
+        toast.success(t("Invalid email or password."));
+        // setErrors({ server: data.message || t("Something went wrong!") });
       }
     } catch (error) {
-      setErrors({ server: t("Unable to connect to the server!") });
-      console.error("Error during login:", error);
+      toast.success(t("Unable to connect to the server!"));
+      // setErrors({ server: t("Unable to connect to the server!") });
+      // console.error("Error during login:", error);
     }
   };
 

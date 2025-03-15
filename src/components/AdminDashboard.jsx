@@ -10,10 +10,12 @@ const AdminDashboard = () => {
     totalConsultants: 0
   });
   const [users, setUsers] = useState([]);
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
+    
     // Fetch stats and users from API
-    fetch("http://127.0.0.1:5000/api/admin/stats")
+    fetch(`${API_BASE_URL}admin/stats`)
       .then((res) => res.json())
       .then((data) => {
         setStats(data);
@@ -23,7 +25,7 @@ const AdminDashboard = () => {
         toast.error("Failed to fetch stats.");
       });
 
-    fetch("http://127.0.0.1:5000/api/admin/users")
+    fetch(`${API_BASE_URL}admin/users`)
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
@@ -32,11 +34,11 @@ const AdminDashboard = () => {
         console.error("Error fetching users:", error);
         toast.error("Failed to fetch users.");
       });
-  }, []);
+  }, [API_BASE_URL]);
 
   // Handle user deletion
   const handleDelete = (userId) => {
-    fetch(`http://127.0.0.1:5000/api/admin/users/${userId}`, {
+    fetch(`${API_BASE_URL}admin/users/${userId}`, {
       method: "DELETE"
     })
       .then((res) => res.json())

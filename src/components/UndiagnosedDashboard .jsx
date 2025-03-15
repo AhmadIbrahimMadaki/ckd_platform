@@ -24,9 +24,10 @@ const UndiagnosedDashboard = () => {
             return;
         }
     
-        console.log("Fetching patient data for ID:", user.id);
+        // console.log("Fetching patient data for ID:", user.id);
+        const API_BASE_URL = process.env.REACT_APP_API_URL;
     
-        fetch(`http://127.0.0.1:5000/api/patient/${user.id}`)
+        fetch(`${API_BASE_URL}patient/${user.id}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log("API Response:", data); // Log API response for debugging

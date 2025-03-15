@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const RegisterPage = () => {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
-  const [successMessage, setSuccessMessage] = useState("");
+  const [successMessage] = useState("");
 
   const validate = () => {
     const newErrors = {};
@@ -38,8 +39,10 @@ const RegisterPage = () => {
     e.preventDefault();
     if (!validate()) return;
 
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
+
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/register", {
+      const response = await fetch(`${API_BASE_URL}register`, {
 
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -47,7 +50,8 @@ const RegisterPage = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        setSuccessMessage(t("Registration successful!"));
+        toast.success(t("Registration successful!"));
+        // setSuccessMessage(t("Registration successful!"));
         setFormData({
           fullName: "",
           email: "",
