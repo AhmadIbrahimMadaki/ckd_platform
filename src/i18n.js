@@ -151,23 +151,23 @@
 
 // export default i18n;
 
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+// import i18n from "i18next";
+// import { initReactI18next } from "react-i18next";
 
-import en from "./locales/en.json";
-import ha from "./locales/ha.json";
-// Add other languages as needed
+// import en from "./locales/en.json";
+// import ha from "./locales/ha.json";
+// // Add other languages as needed
 
-i18n.use(initReactI18next).init({
-  resources: {
-    en: { translation: en },
-    ha: { translation: ha },
-  },
-  lng: "en", // Default language
-  fallbackLng: "en", // Fallback language
-  interpolation: {
-    escapeValue: false, // React already escapes values
-  },
-});
+// i18n.use(initReactI18next).init({
+//   resources: {
+//     en: { translation: en },
+//     ha: { translation: ha },
+//   },
+//   lng: "en", // Default language
+//   fallbackLng: "en", // Fallback language
+//   interpolation: {
+//     escapeValue: false, // React already escapes values
+//   },
+// });
 
-export default i18n;
+// export default i18n;

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -18,13 +18,14 @@ const RegisterPage = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.fullName.trim()) newErrors.fullName = t("Full name is required");
-    if (!formData.email.trim()) newErrors.email = t("Email is required");
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = t("Invalid email format");
-    if (!formData.password.trim()) newErrors.password = t("Password is required");
-    else if (formData.password.length < 6) newErrors.password = t("Password must be at least 6 characters long");
+    // t("Full name is required"); sample
+    if (!formData.fullName.trim()) newErrors.fullName = ("Full name is required");
+    if (!formData.email.trim()) newErrors.email = ("Email is required");
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = ("Invalid email format");
+    if (!formData.password.trim()) newErrors.password = ("Password is required");
+    else if (formData.password.length < 6) newErrors.password = ("Password must be at least 6 characters long");
     if (formData.password !== formData.confirmPassword)
-      newErrors.confirmPassword = t("Passwords do not match");
+      newErrors.confirmPassword = ("Passwords do not match");
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -50,7 +51,7 @@ const RegisterPage = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        toast.success(t("Registration successful!"));
+        toast.success(("Registration successful!"));
         // setSuccessMessage(t("Registration successful!"));
         setFormData({
           fullName: "",
@@ -61,10 +62,12 @@ const RegisterPage = () => {
         });
         navigate("/login");
       } else {
-        setErrors({ server: data.message || t("Something went wrong!") });
+        toast.error(("Something went wrong!"));
+        setErrors({ server: data.message });
       }
     } catch (error) {
-      setErrors({ server: t("Unable to connect to the server!") });
+      toast.error(("Unable to connect to the server!"));
+      // setErrors({ server: ("Unable to connect to the server!") });
     }
   };
 
@@ -72,14 +75,14 @@ const RegisterPage = () => {
     <div className="bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
         <h1 className="text-2xl font-bold text-blue-600 mb-6 text-center">
-          {t("Create Your Account")}
+          {("Create Your Account")}
         </h1>
         {successMessage && <p className="text-green-500 text-center mb-4">{successMessage}</p>}
         {errors.server && <p className="text-red-500 text-center mb-4">{errors.server}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold mb-2">
-              {t("Full Name")}
+              {("Full Name")}
             </label>
             <input
               type="text"
@@ -89,13 +92,13 @@ const RegisterPage = () => {
               className={`w-full border rounded px-4 py-2 text-gray-700 ${
                 errors.fullName ? "border-red-500" : ""
               }`}
-              placeholder={t("Enter your full name")}
+              placeholder={("Enter your full name")}
             />
             {errors.fullName && <p className="text-red-500 text-sm">{errors.fullName}</p>}
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold mb-2">
-              {t("Email Address")}
+              {("Email Address")}
             </label>
             <input
               type="email"
@@ -105,13 +108,13 @@ const RegisterPage = () => {
               className={`w-full border rounded px-4 py-2 text-gray-700 ${
                 errors.email ? "border-red-500" : ""
               }`}
-              placeholder={t("Enter your email")}
+              placeholder={("Enter your email")}
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           </div>
           <div className="mb-6">
             <label className="block text-gray-700 font-semibold mb-2">
-              {t("User Type")}
+              {("User Type")}
             </label>
             <select
               name="userType"
@@ -120,13 +123,13 @@ const RegisterPage = () => {
               className="w-full border rounded px-4 py-2 text-gray-700"
             >
               {/* <option value="admin">{t("Admin")}</option> */}
-              <option value="patient">{t("Patient")}</option>
+              <option value="patient">{("Patient")}</option>
               {/* <option value="consultant">{t("Consultant")}</option> */}
             </select>
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold mb-2">
-              {t("Password")}
+              {("Password")}
             </label>
             <input
               type="password"
@@ -136,13 +139,13 @@ const RegisterPage = () => {
               className={`w-full border rounded px-4 py-2 text-gray-700 ${
                 errors.password ? "border-red-500" : ""
               }`}
-              placeholder={t("Enter your password")}
+              placeholder={("Enter your password")}
             />
             {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold mb-2">
-              {t("Confirm Password")}
+              {("Confirm Password")}
             </label>
             <input
               type="password"
@@ -152,7 +155,7 @@ const RegisterPage = () => {
               className={`w-full border rounded px-4 py-2 text-gray-700 ${
                 errors.confirmPassword ? "border-red-500" : ""
               }`}
-              placeholder={t("Re-enter your password")}
+              placeholder={("Re-enter your password")}
             />
             {errors.confirmPassword && (
               <p className="text-red-500 text-sm">{errors.confirmPassword}</p>
@@ -162,14 +165,14 @@ const RegisterPage = () => {
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded w-full font-semibold hover:bg-blue-600 transition"
           >
-            {t("Register")}
+            {("Register")}
           </button>
         </form>
         <div className="mt-4 text-center">
           <p className="text-gray-600">
-            {t("Already have an account?")}{" "}
+            {("Already have an account?")}{" "}
             <a href="/login" className="text-blue-500 hover:underline">
-              {t("Login")}
+              {("Login")}
             </a>
           </p>
         </div>

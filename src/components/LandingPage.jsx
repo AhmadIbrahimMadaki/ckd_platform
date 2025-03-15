@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useTranslation } from "react-i18next";
+
 
 const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

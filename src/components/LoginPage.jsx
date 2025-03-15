@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom"; // You can use React Router for navigation
 import { toast } from "react-toastify";
 
 const LoginPage = () => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,8 +15,8 @@ const LoginPage = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.email.trim()) newErrors.email = t("Email is required");
-    if (!formData.password.trim()) newErrors.password = t("Password is required");
+    if (!formData.email.trim()) newErrors.email = ("Email is required");
+    if (!formData.password.trim()) newErrors.password = ("Password is required");
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -43,7 +43,7 @@ const LoginPage = () => {
       // console.log("Backend response:", data); // Debug response
   
       if (response.ok) {
-        toast.success(t("Login successful!"));
+        toast.success(("Login successful!"));
   
         // Store user data in localStorage
         if (data.user) {
@@ -54,15 +54,15 @@ const LoginPage = () => {
         if (data.redirect) {
           navigate(data.redirect);
         } else {
-          toast.success(t("No redirect URL provided by the server."));
+          toast.error(("No redirect URL provided by the server."));
           // setErrors({ server: t("No redirect URL provided by the server.") });
         }
       } else {
-        toast.success(t("Invalid email or password."));
+        toast.error(("Invalid email or password."));
         // setErrors({ server: data.message || t("Something went wrong!") });
       }
     } catch (error) {
-      toast.success(t("Unable to connect to the server!"));
+      toast.error(("Unable to connect to the server!"));
       // setErrors({ server: t("Unable to connect to the server!") });
       // console.error("Error during login:", error);
     }
@@ -72,14 +72,14 @@ const LoginPage = () => {
     <div className="bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
         <h1 className="text-2xl font-bold text-blue-600 mb-6 text-center">
-          {t("Login to Your Account")}
+          {("Login to Your Account")}
         </h1>
         {successMessage && <p className="text-green-500 text-center mb-4">{successMessage}</p>}
         {errors.server && <p className="text-red-500 text-center mb-4">{errors.server}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold mb-2">
-              {t("Email Address")}
+              {("Email Address")}
             </label>
             <input
               type="email"
@@ -87,13 +87,13 @@ const LoginPage = () => {
               value={formData.email}
               onChange={handleChange}
               className={`w-full border rounded px-4 py-2 text-gray-700 ${errors.email ? "border-red-500" : ""}`}
-              placeholder={t("Enter your email")}
+              placeholder={("Enter your email")}
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold mb-2">
-              {t("Password")}
+              {("Password")}
             </label>
             <input
               type="password"
@@ -101,7 +101,7 @@ const LoginPage = () => {
               value={formData.password}
               onChange={handleChange}
               className={`w-full border rounded px-4 py-2 text-gray-700 ${errors.password ? "border-red-500" : ""}`}
-              placeholder={t("Enter your password")}
+              placeholder={("Enter your password")}
             />
             {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
           </div>
@@ -109,14 +109,14 @@ const LoginPage = () => {
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded w-full font-semibold hover:bg-blue-600 transition"
           >
-            {t("Login")}
+            {("Login")}
           </button>
         </form>
         <div className="mt-4 text-center">
           <p className="text-gray-600">
-            {t("Don't have an account?")}{" "}
+            {("Don't have an account?")}{" "}
             <a href="/register" className="text-blue-500 hover:underline">
-              {t("Register")}
+              {("Register")}
             </a>
           </p>
         </div>
