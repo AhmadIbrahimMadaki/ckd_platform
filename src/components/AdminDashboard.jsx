@@ -10,7 +10,7 @@ const AdminDashboard = () => {
     totalConsultants: 0
   });
   const [users, setUsers] = useState([]);
-  const API_BASE_URL = process.env.REACT_APP_API_URL;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     

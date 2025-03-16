@@ -8,7 +8,7 @@ const PatientSelection = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    const API_BASE_URL = process.env.REACT_APP_API_URL;
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
     
 
     if (user && user.id) {
@@ -35,7 +35,7 @@ const PatientSelection = () => {
     }
   
     try {
-      const API_BASE_URL = process.env.REACT_APP_API_URL;
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
       const response = await fetch(`${API_BASE_URL}patient/${user.id}`);
       const patientData = await response.json();
   

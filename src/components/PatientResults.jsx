@@ -14,7 +14,7 @@ const PatientResults = () => {
 
   useEffect(() => {
     const fetchResults = async () => {
-      const API_BASE_URL = process.env.REACT_APP_API_URL;
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
       try {
         const response = await axios.get(`${API_BASE_URL}assessments/${patientId}`);
         // console.log("Full API Response:", response.data); // Log the full response

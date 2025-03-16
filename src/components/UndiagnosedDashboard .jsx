@@ -25,7 +25,7 @@ const UndiagnosedDashboard = () => {
         }
     
         // console.log("Fetching patient data for ID:", user.id);
-        const API_BASE_URL = process.env.REACT_APP_API_URL;
+        const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
     
         fetch(`${API_BASE_URL}patient/${user.id}`)
             .then((res) => res.json())

@@ -11,7 +11,7 @@ const Assessments = () => {
     responses: {},
     is_draft: true,
   });
-  const API_BASE_URL = process.env.REACT_APP_API_URL;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const fetchPatientData = async () => {
