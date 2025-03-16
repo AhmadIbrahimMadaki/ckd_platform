@@ -41,6 +41,7 @@ const RegisterPage = () => {
     if (!validate()) return;
 
     const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+    console.log("API_BASE_URL:", API_BASE_URL);
 
     try {
       const response = await fetch(`${API_BASE_URL}register`, {
