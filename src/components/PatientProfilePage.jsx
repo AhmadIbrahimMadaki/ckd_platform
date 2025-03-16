@@ -17,23 +17,24 @@ const PatientProfilePage = () => {
 
     const fetchProfile = async () => {
       const email = user.email; // Get email from authenticated user
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
       try {
-        const response = await fetch(`http://localhost:5000/api/patient/profile?email=${email}`);
+        const response = await fetch(`${API_BASE_URL}patient/profile?email=${email}`);
         const data = await response.json();
 
         if (response.ok) {
           setDiagnosed(data.diagnosed);
           if (data.diagnosed) {
             // Fetch clinical history or other necessary info
-            const historyResponse = await fetch(`http://localhost:5000/api/clinical-history?email=${email}`);
+            const historyResponse = await fetch(`${API_BASE_URL}clinical-history?email=${email}`);
             const historyData = await historyResponse.json();
             if (historyResponse.ok) {
               setClinicalHistory(historyData.history || "");
             }
           } else {
             // Fetch previous assessments
-            const assessmentsResponse = await fetch(`http://localhost:5000/api/previous-assessments?email=${email}`);
+            const assessmentsResponse = await fetch(`${API_BASE_URL}previous-assessments?email=${email}`);
             const assessmentsData = await assessmentsResponse.json();
             if (assessmentsResponse.ok) {
               setPreviousAssessments(assessmentsData.assessments || []);
@@ -58,8 +59,9 @@ const PatientProfilePage = () => {
 
   const handleSubmitClinicalHistory = async () => {
     const email = user.email; // Get email from authenticated user
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
     try {
-      const response = await fetch(`http://localhost:5000/api/update-clinical-history`, {
+      const response = await fetch(`${API_BASE_URL}update-clinical-history`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, history: clinicalHistory }),
