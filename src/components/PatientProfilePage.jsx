@@ -17,7 +17,7 @@ const PatientProfilePage = () => {
 
     const fetchProfile = async () => {
       const email = user.email; // Get email from authenticated user
-      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+      const API_BASE_URL = process.env.REACT_APP_API_URL;
 
       try {
         const response = await fetch(`${API_BASE_URL}patient/profile?email=${email}`);
@@ -59,7 +59,7 @@ const PatientProfilePage = () => {
 
   const handleSubmitClinicalHistory = async () => {
     const email = user.email; // Get email from authenticated user
-    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
     try {
       const response = await fetch(`${API_BASE_URL}update-clinical-history`, {
         method: "POST",

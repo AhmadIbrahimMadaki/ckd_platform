@@ -31,7 +31,7 @@ const LoginPage = () => {
     if (!validate()) return;
   
     try {
-      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+      const API_BASE_URL = process.env.REACT_APP_API_URL;
       // console.log("API_BASE_URL:", API_BASE_URL);
       const response = await fetch(`${API_BASE_URL}login`, {
         method: "POST",
