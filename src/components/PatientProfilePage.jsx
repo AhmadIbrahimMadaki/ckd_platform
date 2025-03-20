@@ -1,94 +1,92 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '../AuthContext'; // Import the useAuth hook
 
 const PatientProfilePage = () => {
-  const { user } = useAuth(); // Get user data from context
-  const [diagnosed, setDiagnosed] = useState(null); // Keep track of diagnosed status
-  const [error, setError] = useState(null);
-  const [clinicalHistory, setClinicalHistory] = useState(""); // For clinical history input
-  const [previousAssessments, setPreviousAssessments] = useState([]); // Store previous assessments
-  const [loading, setLoading] = useState(true);
+  // const { user } = useAuth(); // Get user data from context
+  // const [setDiagnosed] = useState(null); // Keep track of diagnosed status
+  // const [error, setError] = useState(null);
+  // const [setClinicalHistory] = useState(""); // For clinical history input
+  // const [setPreviousAssessments] = useState([]); // Store previous assessments
+  // const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (!user) {
-      setError("");
-      return;
-    }
+  // useEffect(() => {
+  //   if (!user) {
+  //     setError("");
+  //     return;
+  //   }
 
-    const fetchProfile = async () => {
-      const email = user.email; // Get email from authenticated user
-      const API_BASE_URL = process.env.REACT_APP_API_URL;
+  //   const fetchProfile = async () => {
+  //     const email = user.email; // Get email from authenticated user
+  //     const API_BASE_URL = process.env.REACT_APP_API_URL;
 
-      try {
-        const response = await fetch(`${API_BASE_URL}patient/profile?email=${email}`);
-        const data = await response.json();
+  //     try {
+  //       const response = await fetch(`${API_BASE_URL}patient/profile?email=${email}`);
+  //       const data = await response.json();
 
-        if (response.ok) {
-          setDiagnosed(data.diagnosed);
-          if (data.diagnosed) {
-            // Fetch clinical history or other necessary info
-            const historyResponse = await fetch(`${API_BASE_URL}clinical-history?email=${email}`);
-            const historyData = await historyResponse.json();
-            if (historyResponse.ok) {
-              setClinicalHistory(historyData.history || "");
-            }
-          } else {
-            // Fetch previous assessments
-            const assessmentsResponse = await fetch(`${API_BASE_URL}previous-assessments?email=${email}`);
-            const assessmentsData = await assessmentsResponse.json();
-            if (assessmentsResponse.ok) {
-              setPreviousAssessments(assessmentsData.assessments || []);
-            }
-          }
-        } else {
-          setError(data.message);
-        }
-      } catch (error) {
-        setError("Unable to connect to the server.");
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       if (response.ok) {
+  //         setDiagnosed(data.diagnosed);
+  //         if (data.diagnosed) {
+  //           // Fetch clinical history or other necessary info
+  //           const historyResponse = await fetch(`${API_BASE_URL}clinical-history?email=${email}`);
+  //           const historyData = await historyResponse.json();
+  //           if (historyResponse.ok) {
+  //             setClinicalHistory(historyData.history || "");
+  //           }
+  //         } else {
+  //           // Fetch previous assessments
+  //           const assessmentsResponse = await fetch(`${API_BASE_URL}previous-assessments?email=${email}`);
+  //           const assessmentsData = await assessmentsResponse.json();
+  //           if (assessmentsResponse.ok) {
+  //             setPreviousAssessments(assessmentsData.assessments || []);
+  //           }
+  //         }
+  //       } else {
+  //         setError(data.message);
+  //       }
+  //     } catch (error) {
+  //       setError("Unable to connect to the server.");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchProfile();
-  }, [user]);
+  //   fetchProfile();
+  // }, );
 
-  const handleClinicalHistoryChange = (e) => {
-    setClinicalHistory(e.target.value);
-  };
+  // const handleClinicalHistoryChange = (e) => {
+  //   setClinicalHistory(e.target.value);
+  // };
 
-  const handleSubmitClinicalHistory = async () => {
-    const email = user.email; // Get email from authenticated user
-    const API_BASE_URL = process.env.REACT_APP_API_URL;
-    try {
-      const response = await fetch(`${API_BASE_URL}update-clinical-history`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, history: clinicalHistory }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setError(null); // Clear any previous errors
-        alert("Clinical history updated successfully!");
-      } else {
-        setError(data.message || "Error updating clinical history");
-      }
-    } catch (error) {
-      setError("Unable to update clinical history.");
-    }
-  };
+  // const handleSubmitClinicalHistory = async () => {
+  //   const email = user.email; // Get email from authenticated user
+  //   const API_BASE_URL = process.env.REACT_APP_API_URL;
+  //   try {
+  //     const response = await fetch(`${API_BASE_URL}update-clinical-history`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ email, history: clinicalHistory }),
+  //     });
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       setError(null); // Clear any previous errors
+  //       alert("Clinical history updated successfully!");
+  //     } else {
+  //       setError(data.message || "Error updating clinical history");
+  //     }
+  //   } catch (error) {
+  //     setError("Unable to update clinical history.");
+  //   }
+  // };
 
-  if (loading) {
-    return <p></p>;
-  }
+  // if (loading) {
+  //   return <p></p>;
+  // }
 
-  if (error) {
-    return <p>{error}</p>;
-  }
+  // if (error) {
+  //   return <p>{error}</p>;
+  // }
 
   return (
     <div className="profile-container">
-      <h1>Patient Profile</h1>
+      {/* <h1>Patient Profile</h1>
       {diagnosed ? (
         <div>
           <h2>Update Clinical History</h2>
@@ -121,7 +119,7 @@ const PatientProfilePage = () => {
             <p>No previous assessments available.</p>
           )}
         </div>
-      )}
+      )} */}
     </div>
   );
 };

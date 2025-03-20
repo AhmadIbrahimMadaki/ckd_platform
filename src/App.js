@@ -3,7 +3,7 @@ import LandingPage from "./components/LandingPage";
 import RegisterPage from "./components/RegisterPage";
 import LoginPage from "./components/LoginPage";
 import PatientProfilePage from "./components/PatientProfilePage";
-import ClinicalHistoryPage from "./components/ClinicalHistoryPage";
+// import ClinicalHistoryPage from "./components/ClinicalHistoryPage";
 import AssessmentsPage from "./components/AssessmentsPage";
 import Assessments from "./components/Assessments/assessment";
 import UndiagnosedDashboard from "./components/UndiagnosedDashboard ";
@@ -33,7 +33,7 @@ function App() {
           {/* <Route path="/teleconsultation"  element={<Teleconsultation />} /> */}
 
           {/* Protected Routes (Only Logged-in Users) */}
-          <Route path="/patient/clinical-history" element={<ProtectedRoute element={<ClinicalHistoryPage />} />} />
+          {/* <Route path="/patient/clinical-history" element={<ProtectedRoute element={<ClinicalHistoryPage />} />} /> */}
           <Route path="/patient/assessments" element={<ProtectedRoute element={<AssessmentsPage />} />} />
           <Route path="/assessment" element={<ProtectedRoute element={<Assessments />} />} />
           <Route path="/undiagnosed-dashboard" element={<ProtectedRoute element={<UndiagnosedDashboard />} />} />
