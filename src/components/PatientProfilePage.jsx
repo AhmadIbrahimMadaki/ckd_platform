@@ -11,7 +11,7 @@ const PatientProfilePage = () => {
 
   useEffect(() => {
     if (!user) {
-      setError("User not authenticated.");
+      setError("");
       return;
     }
 
@@ -79,7 +79,7 @@ const PatientProfilePage = () => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p></p>;
   }
 
   if (error) {

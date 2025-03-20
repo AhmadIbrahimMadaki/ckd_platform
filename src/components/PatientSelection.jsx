@@ -36,24 +36,47 @@ const PatientSelection = () => {
   
     try {
       const API_BASE_URL = process.env.REACT_APP_API_URL;
-      const response = await fetch(`${API_BASE_URL}patient/${user.id}`);
-      const patientData = await response.json();
-  
-      if (!response.ok) {
+    
+      // Fetch patient data
+      const patientResponse = await fetch(`${API_BASE_URL}patient/${user.id}`);
+      const patientData = await patientResponse.json();
+      
+      console.log("Full patientData:", patientData); // Debugging
+      if (!patientResponse.ok) {
         throw new Error(patientData.message || "Error fetching patient data.");
       }
-  
-      // Check if assessment exists and is submitted
-      if (patientData.assessment && patientData.assessment.status === "submitted") {
-        navigate(`/patientresults/${user.id}`);
-      } else {
-        toast.error("Your assessment is saved as a draft. Please complete and submit it before proceeding.");
-        navigate(`/assessment/`); // Redirect to complete assessment
+    
+      // Fetch assessments separately
+      const assessmentResponse = await fetch(`${API_BASE_URL}assessments/${user.id}`);
+      const assessmentData = await assessmentResponse.json();
+    
+      console.log("Full assessmentData2:", assessmentData); // Debugging
+      
+      if (!assessmentResponse.ok) {
+        throw new Error(assessmentData.message || "Error fetching assessment data.");
       }
+    
+      // Ensure assessments exist
+      if (assessmentData && Array.isArray(assessmentData) && assessmentData.length > 0) {
+        const assessment = assessmentData[0]; // Get first assessment
+        // console.log("Full assessmentData3:", assessment.is_draft === 1);
+        if (assessment.is_draft === false) { // Check if assessment is submitted
+          navigate(`/patientresults/${user.id}`);
+        } else {
+          toast.error("Your assessment is saved as a draft. Please complete and submit it before proceeding.");
+          navigate(`/assessment/`); // Redirect to complete assessment
+        }
+      } else {
+        console.log("Assessment data is missing.");
+        toast.error("No assessment record found. Please start a new assessment.");
+        navigate(`/assessment/`); // Redirect to start assessment
+      }
+    
     } catch (error) {
-      // console.error("Error fetching patient data:", error);
+      console.error("Error fetching data:", error);
       toast.error("An error occurred while retrieving your data. Please try again.");
     }
+    
   };
   
 
