@@ -44,7 +44,7 @@ function App() {
           <Route path="/unknown-ckd" element={<ProtectedRoute element={<UnknownCKDForm />} />} />
 
           {/* Admin-Only Route */}
-          <Route path="/admin/dashboard" element={<ProtectedRoute element={<AdminDashboard />} allowedRoles={["admin"]} />} />
+          <Route path="/admin/dashboard" element={<ProtectedRoute element={<AdminDashboard />} />} />
         </Routes>
 
         {/* Wrap the Profile Page in AuthProvider */}
