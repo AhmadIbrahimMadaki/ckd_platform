@@ -123,7 +123,7 @@ const RegisterPage = () => {
               onChange={handleChange}
               className="w-full border rounded px-4 py-2 text-gray-700"
             >
-              <option value="admin">{("Admin")}</option>
+              {/* <option value="admin">{("Admin")}</option> */}
               <option value="patient">{("Patient")}</option>
               {/* <option value="consultant">{t("Consultant")}</option> */}
             </select>
