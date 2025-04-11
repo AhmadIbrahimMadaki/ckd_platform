@@ -1,0 +1,51 @@
+{
+    "Home": "Gida",
+    "About Us": "Game da Mu",
+    "Course": "Koyarwa",
+    "Contact Us": "Tuntuɓe Mu",
+    "Get Started": "Farawa",
+    "Chronic Kidney Disease Awareness": "Sanin Ciwon Koda Mai Tsanani",
+    "Learn how to monitor and manage CKD effectively. your health is our priority.": "Koyi yadda ake lura da sarrafa CKD yadda ya kamata. Lafiyarku ita ce muhimmancinmu.",
+    "What is CKD?": "Menene CKD?",
+    "Chronic Kidney Disease (CKD) is a condition characterized by the gradual loss of kidney function over time. Early detection and management are crucial to preventing complications. Our platform offers a wealth of resources to help individuals and healthcare providers take control of CKD management.": "Chronic Kidney Disease (CKD) na nufin rashin aiki na koda wanda ke faruwa a hankali a cikin lokaci. Gano da kuma sarrafa shi da wuri yana da mahimmanci wajen hana matsaloli. Dandalinmu yana bayar da albarkatu da dama don taimaka wa mutane da masu bada kulawa na lafiya don sarrafa CKD.",
+    "Prevention": "Rigakafi",
+    "Learn the steps you can take to reduce the risk of CKD, including maintaining a healthy lifestyle, staying hydrated, and regular checkups.": "Koyi matakan da za ka iya dauka don rage haɗarin CKD, ciki har da kiyaye lafiyar jiki, shan ruwa da kyau, da kuma duba lafiya akai-akai.",
+    "Monitoring": "Lura",
+    "Get tools and insights to track kidney health, analyze symptoms, and keep track of your overall well-being.": "Samun kayan aikin da zasu taimaka wajen lura da lafiyar koda, nazarin alamomi, da kuma bibiyar lafiyar ku gaba daya.",
+    "Treatment Options": "Zaɓuɓɓukan Magani",
+    "Access detailed information about treatment plans, lifestyle modifications, and expert guidance tailored to your needs.": "Samun cikakken bayani game da tsare-tsaren magani, gyaran yanayin rayuwa, da kuma shawarwarin kwararru da aka tsara musamman ga bukatunku.",
+
+    
+    "Create Your Account": "Kirkiri asusun ku",
+    "Full Name": "Cikakken suna",
+    "Enter your full name": "Shigar da cikakken sunan ka/ki",
+    "Email Address": "Adireshin imel",
+    "Enter your email": "Shigar da imel naka",
+    "User Type": "Nau'in mai amfani",
+    "Patient ": "Mai jinya",
+    "Password": "Kalmar sirri",
+    "Enter your password": "Shigar da kalmar sirri",
+    "Confirm Password": "Tabbatar da kalmar sirri",
+    "Re-enter your password": "Kuma Tabbatar da kalmar sirri",
+    "Register": "Rajista",
+    "Already have an account?": "Kun riga kuna da asusu?",
+    "Login": "Shiga",
+    "Full name is required": "Dole ne a cika sunan cikakke",
+    "Email is required": "Ana bukatar adireshin imel",
+    "Invalid Email": "Tsarin imel bai dace ba",
+    "Password is required": "Ana bukatar kalmar sirri",
+    "Password must be at least 6 characters long": "Kalmar sirri dole ne ta zama a kalla haruffa 6",
+    "Passwords do not match": "Kalmar sirri ba ta dace ba",
+    "Registration successful!": "Rajista ta yi nasara!",
+    "Server Error": "Wani kuskure ya faru!",
+    "Unable to connect to the server!": "Ba a samu haɗi da sabar ba!",
+
+
+    "Login to Your Account": "Shiga zuwa asusun ku",
+    "Don't have an account?": "Ba ku da asusu?",
+    "Login successful!": "An shiga cikin nasara!",
+    "Invalid email or password.": "Imel ko kalmar sirri ba daidai ba.",
+    "No redirect URL provided by the server.": "Babu adireshin komawa da sabar ta bayar."
+  
+  }
+  
