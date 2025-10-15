@@ -11,6 +11,8 @@ import AdminDashboard from "./components/AdminDashboard";
 import Resources from "./components/Resources";
 import PatientResults from "./components/PatientResults";
 import Teleconsultation from "./components/Teleconsultation";
+import Pharmacy  from "./components/pharmacy";
+import Appointments  from "./components/appointments";
 import PatientSelection from "./components/PatientSelection";
 import NewPatientPage from "./components/NewPatientPage";
 import UnknownCKDForm from "./components/UnknownCKDForm";
@@ -23,6 +25,7 @@ import i18n from "./i18n";
 
 // ✅ Import your dropdown-based selector
 import LanguageSelector from "./components/LanguageSelector";
+import Layout from "./components/Layout";
 
 function AppRoutes() {
   return (
@@ -36,6 +39,8 @@ function AppRoutes() {
       <Route path="/assessment" element={<ProtectedRoute element={<Assessments />} />} />
       <Route path="/undiagnosed-dashboard" element={<ProtectedRoute element={<UndiagnosedDashboard />} />} />
       <Route path="/teleconsultation" element={<ProtectedRoute element={<Teleconsultation />} />} />
+      <Route path="/pharmacy/:patientId" element={<ProtectedRoute element={<Pharmacy />} />} />
+      <Route path="/appointments" element={<ProtectedRoute element={<Appointments />} />} />
       <Route path="/patientresults/:patientId" element={<ProtectedRoute element={<PatientResults />} />} />
       <Route path="/patientselection" element={<ProtectedRoute element={<PatientSelection />} />} />
       <Route path="/new-patient" element={<ProtectedRoute element={<NewPatientPage />} />} />
@@ -59,6 +64,7 @@ function App() {
           </div>
         </Router>
       </AuthProvider>
+      <Layout/>
     </I18nextProvider>
   );
 }
