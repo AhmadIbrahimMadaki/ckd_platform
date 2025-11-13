@@ -232,15 +232,30 @@ const PatientResults = () => {
       </div>
 
       {/* Recommendations */}
-      <div className="w-full max-w-md bg-white shadow-md rounded-xl p-6 mt-8">
-        <h3 className="text-lg font-bold mb-2 text-blue-600">AI Recommendations</h3>
-        <ul className="list-disc list-inside text-gray-700 text-left">
+      <div
+        className={`w-full max-w-md shadow-md rounded-xl p-6 mt-8 text-white transition-all duration-300 
+        ${riskColors[assessment.risk_category] || "bg-gray-500"}`}
+      >
+        <h3 className="text-lg font-bold mb-2">
+          AI Recommendations –{" "}
+          <span className="underline">
+            {assessment.risk_category || "Unknown Risk"}
+          </span>
+        </h3>
+
+        <ul className="list-disc list-inside text-left text-white/90">
           {Array.isArray(assessment.recommendations)
-            ? assessment.recommendations.map((rec, index) => <li key={index}>{rec}</li>)
-            : <li>{assessment.recommendations || "No recommendations available"}</li>
-          }
+            ? assessment.recommendations.map((rec, index) => (
+                <li key={index} className="mb-1">
+                  {rec}
+                </li>
+              ))
+            : (
+              <li>{assessment.recommendations || "No recommendations available"}</li>
+            )}
         </ul>
       </div>
+
     </div>
   );
 };
