@@ -54,7 +54,8 @@ const Pharmacy = () => {
         patientId,
         medicines,
       });
-      toast.success("Your medicine order has been placed!");
+      toast.success("Your medicine order is in process");
+      window.open("https://share.google/EDJvuhNX6shDUG3AJ", "_blank"); // open in new tab
       navigate("/appointments"); // redirect after ordering
     } catch (error) {
       console.error(error);
