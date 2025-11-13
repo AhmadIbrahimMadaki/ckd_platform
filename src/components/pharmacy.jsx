@@ -50,12 +50,13 @@ const Pharmacy = () => {
 
     setOrdering(true);
     try {
+      window.open("https://share.google/EDJvuhNX6shDUG3AJ", "_blank"); // open in new tab
       await axios.post(`${API_BASE_URL}orders`, {
         patientId,
         medicines,
       });
       toast.success("Your medicine order is in process");
-      window.open("https://share.google/EDJvuhNX6shDUG3AJ", "_blank"); // open in new tab
+      
       navigate("/appointments"); // redirect after ordering
     } catch (error) {
       console.error(error);
