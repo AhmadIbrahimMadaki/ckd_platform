@@ -237,10 +237,8 @@ const PatientResults = () => {
         ${riskColors[assessment.risk_category] || "bg-gray-500"}`}
       >
         <h3 className="text-lg font-bold mb-2">
-          AI Recommendations –{" "}
-          <span className="underline">
-            {assessment.risk_category || "Unknown Risk"}
-          </span>
+          AI Recommendations
+          
         </h3>
 
         <ul className="list-disc list-inside text-left text-white/90">
