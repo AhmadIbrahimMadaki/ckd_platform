@@ -15,6 +15,7 @@ const RegisterPage = () => {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -41,6 +42,7 @@ const RegisterPage = () => {
 
     const API_BASE_URL = process.env.REACT_APP_API_URL;
     // console.log("API_BASE_URL:", API_BASE_URL);
+    setLoading(true);   // ✅ Start loader
 
     try {
       const response = await fetch(`${API_BASE_URL}register`, {
@@ -66,6 +68,7 @@ const RegisterPage = () => {
     } catch (error) {
       toast.error(t("Unable to connect to the server!"));
     }
+    setLoading(false);  // ✅ Stop loader
   };
 
   return (
@@ -157,9 +160,14 @@ const RegisterPage = () => {
           </div>
           <button
             type="submit"
+            disabled={loading}
             className="bg-blue-500 text-white px-4 py-2 rounded w-full font-semibold hover:bg-blue-600 transition"
           >
-            {t("Register")}
+            {loading ? (
+              <div className="w-5 h-5 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              t("Register")
+            )}
           </button>
         </form>
         <div className="mt-4 text-center">

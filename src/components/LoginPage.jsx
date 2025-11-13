@@ -8,6 +8,8 @@ const LoginPage = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
 
   const validate = () => {
     const newErrors = {};
@@ -21,6 +23,7 @@ const LoginPage = () => {
     e.preventDefault();
     if (!validate()) return;
 
+    setLoading(true);   // ✅ Start loader
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}login`, {
         method: "POST",
@@ -39,6 +42,7 @@ const LoginPage = () => {
     } catch {
       toast.error(t("Unable to connect to the server!"));
     }
+    setLoading(false);  // ✅ Stop loader
   };
 
   return (
@@ -73,9 +77,19 @@ const LoginPage = () => {
             {errors.password && <p className="text-red-500">{errors.password}</p>}
           </div>
 
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 w-full rounded">
-            {t("Login")}
+          <button
+            type="submit"
+            disabled={loading}
+            className={`bg-blue-500 text-white px-4 py-2 w-full rounded flex items-center justify-center
+              ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
+          >
+            {loading ? (
+              <div className="w-5 h-5 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              t("Login")
+            )}
           </button>
+
         </form>
 
         <p className="mt-4 text-center">
