@@ -27,13 +27,13 @@ export default function Teleconsultation() {
       });
 
       if (response.ok) {
-        alert("Meeting link sent to the doctor successfully!");
+        toast.success("Meeting link sent to the doctor successfully!");
       } else {
-        alert("Failed to send email. Please try again.");
+        toast.error("Failed to send email. Please try again.");
       }
     } catch (error) {
       console.error("Error sending email:", error);
-      alert("An error occurred while sending the email.");
+      toast.error("An error occurred while sending the email.");
     }
   };
 
@@ -46,16 +46,16 @@ export default function Teleconsultation() {
       await sendEmailToDoctor(meetLink);
       window.open(meetLink, "_blank");
     } else if (option === "chat") {
-      const phoneNumber = "2348028666887"; // Correct format
+      const phoneNumber = "2348036891843"; // Correct format
       const message = encodeURIComponent("Hello, I need assistance (Testing) from our telemedicine app.");
       const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
       alert("Opening WhatsApp Chat...");
       window.open(whatsappLink, "_blank");
     } else if (option === "schedule") {
-      const schedulingLink = "https://calendly.com/your-clinic/30min"; // Use your actual Calendly link
-      alert("Navigating to Appointment Scheduling...");
-      window.open(schedulingLink, "_blank");
+        window.open("/schedule", "_self");
     }
+
+
   };
 
   // Logout function

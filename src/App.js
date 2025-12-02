@@ -3,6 +3,8 @@ import LandingPage from "./components/LandingPage";
 import RegisterPage from "./components/RegisterPage";
 import LoginPage from "./components/LoginPage";
 import PatientProfilePage from "./components/PatientProfilePage";
+import "react-datepicker/dist/react-datepicker.css";
+
 // import ClinicalHistoryPage from "./components/ClinicalHistoryPage";
 import AssessmentsPage from "./components/AssessmentsPage";
 import Assessments from "./components/Assessments/assessment";
@@ -16,6 +18,11 @@ import Appointments  from "./components/appointments";
 import PatientSelection from "./components/PatientSelection";
 import NewPatientPage from "./components/NewPatientPage";
 import UnknownCKDForm from "./components/UnknownCKDForm";
+import LandingPageDP from "./components/LandingPageDP";
+import DPAssessment from "./components/DPAssessment";
+import DPAssessmentResultPage from "./components/DPAssessmentResultPage";
+import AppointmentForm from "./components/AppointmentForm";
+
 import { AuthProvider } from "./AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
@@ -46,6 +53,10 @@ function AppRoutes() {
       <Route path="/new-patient" element={<ProtectedRoute element={<NewPatientPage />} />} />
       <Route path="/unknown-ckd" element={<ProtectedRoute element={<UnknownCKDForm />} />} />
       <Route path="/admin/dashboard" element={<ProtectedRoute element={<AdminDashboard />} />} />
+      <Route path="/landingPageDP" element={<ProtectedRoute element={<LandingPageDP />} />} />
+      <Route path="/DPAssessment" element={<ProtectedRoute element={<DPAssessment />} />} />
+      <Route path="/diagnosed-result/:assessment_id" element={<ProtectedRoute element={<DPAssessmentResultPage />} />} />
+      <Route path="/schedule" element={<ProtectedRoute element={<AppointmentForm />} />} />
     </Routes>
   );
 }

@@ -42,29 +42,29 @@ const Pharmacy = () => {
 }, [API_BASE_URL, patientId]);
 
   // Order medicines
-  const handleOrder = async () => {
-    if (medicines.length === 0) {
-      toast.error("No medicines to order.");
-      return;
-    }
+  // const handleOrder = async () => {
+  //   if (medicines.length === 0) {
+  //     toast.error("No medicines to order.");
+  //     return;
+  //   }
 
-    setOrdering(true);
-    try {
-      window.open("https://share.google/EDJvuhNX6shDUG3AJ", "_blank"); // open in new tab
-      await axios.post(`${API_BASE_URL}orders`, {
-        patientId,
-        medicines,
-      });
-      toast.success("Your medicine order is in process");
+  //   setOrdering(true);
+  //   try {
+  //     window.open("https://share.google/EDJvuhNX6shDUG3AJ", "_blank"); // open in new tab
+  //     await axios.post(`${API_BASE_URL}orders`, {
+  //       patientId,
+  //       medicines,
+  //     });
+  //     toast.success("Your medicine order is in process");
       
-      navigate("/appointments"); // redirect after ordering
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to place order.");
-    } finally {
-      setOrdering(false);
-    }
-  };
+  //     navigate("/appointments"); // redirect after ordering
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error("Failed to place order.");
+  //   } finally {
+  //     setOrdering(false);
+  //   }
+  // };
 
   if (loading) return <p className="text-center text-gray-600">Loading prescriptions...</p>;
 
@@ -114,13 +114,28 @@ const Pharmacy = () => {
         >
           Back
         </button>
+
         <button
-          onClick={handleOrder}
+          onClick={() => {
+            setOrdering(true);
+            setTimeout(() => {
+              window.open("https://share.google/EDJvuhNX6shDUG3AJ", "_blank");
+              setOrdering(false);
+            }, 1000); // simulate small delay
+          }}
           disabled={ordering}
           className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded disabled:opacity-50"
         >
           {ordering ? "Placing Order..." : "Order Medicines"}
         </button>
+
+        {/* <button
+          onClick={handleOrder}
+          disabled={ordering}
+          className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded disabled:opacity-50"
+        >
+          {ordering ? "Placing Order..." : "Order Medicines"}
+        </button> */}
       </div>
     </div>
   );

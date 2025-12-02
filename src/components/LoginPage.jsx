@@ -35,6 +35,10 @@ const LoginPage = () => {
       if (response.ok) {
         toast.success(t("Login successful!"));
         localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("patient_id", data.user.id);
+        localStorage.setItem("patient_name", data.user.full_name);
+        localStorage.setItem("patient_contact", data.user.email);
+
         navigate(data.redirect || "/");
       } else {
         toast.error(t("Invalid email or password."));

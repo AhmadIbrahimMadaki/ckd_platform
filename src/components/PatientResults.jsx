@@ -202,7 +202,7 @@ const PatientResults = () => {
       {/* Navigation Grid */}
       <div className="grid grid-cols-2 gap-4 mt-8 w-full max-w-md">
         <button
-          onClick={() => navigate("/assessment")}
+          onClick={() => navigate("/landingPageDP")}
           className="bg-white p-6 rounded-xl shadow-md text-center hover:bg-blue-50"
         >
           <div className="text-blue-600 text-3xl mb-2">🤖</div>
