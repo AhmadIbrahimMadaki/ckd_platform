@@ -102,7 +102,7 @@ export default function DPAssessment() {
     egfr: "",
     creatinine: "",
     creatinine_unit: "mg/dL",
-    race: "Asian"
+    race: "Black"
   });
   const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -160,7 +160,7 @@ export default function DPAssessment() {
               <option>mg/dL</option><option>µmol/L</option>
             </select>
             <select name="race" value={form.race} onChange={handleChange} className="border p-2 rounded">
-              <option>Asian</option><option>Black</option><option>Caucasian</option><option>Other</option>
+              <option>Black</option><option>Other</option>
             </select>
           </div>
 
